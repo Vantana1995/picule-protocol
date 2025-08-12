@@ -2,7 +2,6 @@
 pragma solidity 0.8.30;
 import {IFactory} from "../interfaces/IFactory.sol";
 import {Pair} from "./pair.sol";
-import {IPair} from "../interfaces/IPair.sol";
 
 contract Factory is IFactory {
     address public feeTo;
