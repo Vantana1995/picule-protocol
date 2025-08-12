@@ -783,6 +783,14 @@ contract FundsManager {
 
     function lockLp(uint256 amount) external _lock returns (uint256 tokenId) {
         assembly {
+            let ptr := mload(0x40)
+            mstore(ptr, sload(totalLpLocked.slot))
+            mstore(ptr, div(mul(mload(ptr), 1), 100))
+            // Require amount >= 1% of totalLpLocked (minimum threshold)
+            if lt(amount, mload(ptr)) {
+                mstore(0x160, 0x1c4f7a95) // Custom error: INSUFFICIENT_AMOUNT
+                revert(0x160, 0x04)
+            }
             // store in memory lpToken address
             let _pair := sload(pair.slot)
             mstore(0x40, shl(224, 0xcca3e832))
@@ -867,6 +875,15 @@ contract FundsManager {
 
     function addLpToNFT(uint256 tokenId, uint256 amount) external _lock {
         assembly {
+            let ptr := mload(0x40)
+            // Calculate 1% of totalLpLocked as minimum threshold
+            mstore(ptr, sload(totalLpLocked.slot))
+            mstore(ptr, div(mul(mload(ptr), 1), 100))
+            // Require amount >= 1% of totalLpLocked (minimum threshold)
+            if lt(amount, mload(ptr)) {
+                mstore(0x160, 0x1c4f7a95) // Custom error: INSUFFICIENT_AMOUNT
+                revert(0x160, 0x04)
+            }
             mstore(0x00, tokenId)
             mstore(0x20, nftReceiveData.slot)
             mstore(0x120, keccak256(0x00, 0x40))
