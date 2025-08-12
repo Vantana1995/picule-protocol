@@ -17,7 +17,6 @@ pragma solidity 0.8.30;
  */
 import {ERC20} from "./erc20.sol";
 import {ERC721Constructor} from "./erc721.sol";
-import {IICO} from "../interfaces/IICO.sol";
 import {ITokenLaunchManager} from "../interfaces/ITLmanager.sol";
 import {FundsManager} from "./fundsManager.sol";
 
