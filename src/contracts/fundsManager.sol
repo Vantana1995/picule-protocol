@@ -16,7 +16,6 @@ pragma solidity 0.8.30;
  * available under MIT License.
  */
 import {InterfaceLPToken} from "../interfaces/ILpToken.sol";
-import {IERC721} from "../interfaces/IERC721.sol";
 import {Pair} from "./pair.sol";
 
 contract FundsManager {
