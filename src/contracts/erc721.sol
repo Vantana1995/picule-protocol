@@ -72,7 +72,13 @@ contract ERC721Constructor is ERC721, ERC721URIStorage, ERC2981 {
     function tokenURI(
         uint256 tokenId
     ) public view override(ERC721, ERC721URIStorage) returns (string memory) {
-        return super.tokenURI(tokenId);
+        _requireOwned(tokenId);
+
+        string memory baseURI = _baseURI();
+        return
+            bytes(baseURI).length > 0
+                ? string.concat(baseURI, tokenId.toString(), ".json")
+                : "";
     }
 
     function supportsInterface(
