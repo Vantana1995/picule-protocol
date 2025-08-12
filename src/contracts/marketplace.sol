@@ -46,6 +46,10 @@ contract Marketplace {
         uint256 newPrice
     );
 
+    constructor() {
+        owner = msg.sender;
+    }
+
     modifier onlyItemOwner(address nftContract, uint256 tokenId) {
         require(
             IERC721(nftContract).ownerOf(tokenId) == msg.sender,
