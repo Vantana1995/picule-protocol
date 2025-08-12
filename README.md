@@ -12,6 +12,7 @@ Revolutionary value-backed NFTs with permanently locked liquidity that eliminate
 ## 📁 Repository Structure
 
 ### 📋 Smart Contracts
+
 - [`/src/contracts`](./src/contracts) - Core protocol contracts
   - [`erc20.sol`](./src/contracts/erc20.sol) - ERC-20 token implementation
   - [`erc20Constructor.sol`](./src/contracts/erc20Constructor.sol) - ERC-20 factory constructor
@@ -28,6 +29,7 @@ Revolutionary value-backed NFTs with permanently locked liquidity that eliminate
   - [`TokenLaunchManager.sol`](./src/contracts/TokenLaunchManager.sol) - Project creation factory
 
 ### 🔗 Interfaces
+
 - [`/src/interfaces`](./src/interfaces) - Contract interfaces
   - [`IERC20.sol`](./src/interfaces/IERC20.sol)
   - [`IERC721.sol`](./src/interfaces/IERC721.sol)
@@ -40,6 +42,7 @@ Revolutionary value-backed NFTs with permanently locked liquidity that eliminate
   - [`IWMON.sol`](./src/interfaces/IWMON.sol)
 
 ### 📚 Libraries
+
 - [`/src/libraries`](./src/libraries) - Utility libraries
   - [`Library.sol`](./src/libraries/Library.sol) - Router helper functions
   - [`Math.sol`](./src/libraries/Math.sol) - Mathematical operations
@@ -47,6 +50,7 @@ Revolutionary value-backed NFTs with permanently locked liquidity that eliminate
   - [`UQ112x112.sol`](./src/libraries/UQ112x112.sol) - Fixed point math library
 
 ### 📚 Documentation
+
 - [`/docs`](./docs) - PDF documentation and technical specs
 
 ## 📜 License
@@ -54,9 +58,11 @@ Revolutionary value-backed NFTs with permanently locked liquidity that eliminate
 This repository contains smart contracts licensed under two different licenses:
 
 ### Business Source License 1.1 (BSL)
+
 **Commercial use prohibited until August 12, 2028, after which it becomes MIT.**
 
 Core Protocol Contracts:
+
 - [`erc20.sol`](./src/contracts/erc20.sol)
 - [`erc721.sol`](./src/contracts/erc721.sol)
 - [`factory.sol`](./src/contracts/factory.sol)
@@ -67,10 +73,12 @@ Core Protocol Contracts:
 - [`fundsManager.sol`](./src/contracts/fundsManager.sol)
 - [`TokenLaunchManager.sol`](./src/contracts/TokenLaunchManager.sol)
 
-### MIT License  
+### MIT License
+
 **Free to use, copy, modify, and distribute with attribution.**
 
 Supporting Components:
+
 - [`/src/interfaces/`](./src/interfaces) - All interface files
 - [`/src/libraries/`](./src/libraries) - Utility libraries
   - [`Library.sol`](./src/libraries/Library.sol)
@@ -79,9 +87,10 @@ Supporting Components:
   - [`UQ112x112.sol`](./src/libraries/UQ112x112.sol)
 
 **Full License Terms:**
-- [LICENSE-BSL](./LICENSE-BSL) - Business Source License 1.1
-- [LICENSE-MIT](./LICENSE-MIT) - MIT License
+
+- [LICENSE-BSL](./LICENSE-BSL.md) - Business Source License 1.1
+- [LICENSE-MIT](./LICENSE-MIT.md) - MIT License
 
 ---
 
-*One-person project - Conceived and developed in 2024*
+_One-person project - Conceived and developed in 2024_
