@@ -86,11 +86,6 @@ Supporting Components:
   - [`TransferLib.sol`](./src/libraries/TransferLib.sol)
   - [`UQ112x112.sol`](./src/libraries/UQ112x112.sol)
 
-**Full License Terms:**
-
-- [LICENSE-BSL](./LICENSE-BSL.md) - Business Source License 1.1
-- [LICENSE-MIT](./LICENSE-MIT.md) - MIT License
-
 ---
 
 _One-person project - Conceived and developed in 2024_
