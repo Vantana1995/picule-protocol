@@ -5,7 +5,6 @@ import {Library} from "../libraries/Library.sol";
 import {IPair} from "../interfaces/IPair.sol";
 import {IWMON} from "../interfaces/IWMON.sol";
 import {Transfer} from "../libraries/TransferLib.sol";
-import {IFactory} from "../interfaces/IFactory.sol";
 import {IRouter} from "../interfaces/IRouter.sol";
 
 contract Router is IRouter {
