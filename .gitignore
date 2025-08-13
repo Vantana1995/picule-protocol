@@ -7,8 +7,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Scripts (if containing sensitive deployment keys)
-scripts/
 
 # IDE and Editor files
 .vscode/

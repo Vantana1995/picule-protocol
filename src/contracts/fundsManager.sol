@@ -92,22 +92,22 @@ contract FundsManager {
 
     constructor() {}
 
-    function setAddresses(address _factory, address _wmon) external {
-        Factory = _factory;
-        WMON = _wmon;
-    }
+    function setAddresses() external {}
 
     function initialization(
         address _erc20,
         address _erc721,
         address _manager,
-        address _icoManager
+        address _icoManager,
+        address _factory,
+        address _wmon
     ) external initializer {
         token = _erc20;
         erc721 = _erc721;
         manager = _manager;
         icoManager = _icoManager;
-        unlocked = 1;
+        Factory = _factory;
+        WMON = _wmon;
     }
 
     receive() external payable {
