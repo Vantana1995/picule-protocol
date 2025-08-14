@@ -15,12 +15,12 @@ Revolutionary value-backed NFTs with permanently locked liquidity that eliminate
 - [`/src/contracts`](./src/contracts) - Core protocol contracts
   - [`erc20.sol`](./src/contracts/erc20.sol) - ERC-20 token implementation - [0x002e13268edf8b3680bbd7b1b3e9e59740b9b008](https://testnet.monadexplorer.com/address/0x002e13268edf8b3680bbd7b1b3e9e59740b9b008)
   - [`erc20Constructor.sol`](./src/contracts/erc20Constructor.sol) - ERC-20 factory constructor
-  - [`erc721.sol`](./src/contracts/erc721.sol) - NFT implementation with LP locking - [0x0b7d93e656d83d6ca89749991d746429c93b51c5](https://testnet.monadexplorer.com/address/0x0b7d93e656d83d6ca89749991d746429c93b51c5)
+  - [`erc721.sol`](./src/contracts/erc721.sol) - Picule NFT - [0x0b7d93e656d83d6ca89749991d746429c93b51c5](https://testnet.monadexplorer.com/address/0x0b7d93e656d83d6ca89749991d746429c93b51c5)
   - [`factory.sol`](./src/contracts/factory.sol) - Pair creation factory - [0x7b2f3f824505518047f08513df6e43ba0992a84a](https://testnet.monadexplorer.com/address/0x7b2f3f824505518047f08513df6e43ba0992a84a)
   - [`lpToken.sol`](./src/contracts/lpToken.sol) - Liquidity provider token
   - [`marketplace.sol`](./src/contracts/marketplace.sol) - NFT trading marketplace - [0xe8c3490eed91ba902731ea2bbb69426282604012](https://testnet.monadexplorer.com/address/0xe8c3490eed91ba902731ea2bbb69426282604012)
-  - [`mpcToken.sol`](./src/contracts/mpcToken.sol) - Protocol governance token - [0x9d76e3b5b488ae77e2af8f33ac9fd3771fcc94a8](https://testnet.monadexplorer.com/address/0x9d76e3b5b488ae77e2af8f33ac9fd3771fcc94a8)
-  - [`pair.sol`](./src/contracts/pair.sol) - AMM pool with commission tracking - [0x4cfd18dcf77eed5fc06a8a850eeccabe3556216f](https://testnet.monadexplorer.com/address/0x4cfd18dcf77eed5fc06a8a850eeccabe3556216f)
+  - [`mpcToken.sol`](./src/contracts/mpcToken.sol) - MPC token - [0x9d76e3b5b488ae77e2af8f33ac9fd3771fcc94a8](https://testnet.monadexplorer.com/address/0x9d76e3b5b488ae77e2af8f33ac9fd3771fcc94a8)
+  - [`pair.sol`](./src/contracts/pair.sol) - AMM pool with commission tracking implementation - [0x4cfd18dcf77eed5fc06a8a850eeccabe3556216f](https://testnet.monadexplorer.com/address/0x4cfd18dcf77eed5fc06a8a850eeccabe3556216f)
   - [`router.sol`](./src/contracts/router.sol) - Swap and liquidity router - [0xacaa112d50fe4cd3941958605e27b87e0d895c27](https://testnet.monadexplorer.com/address/0xacaa112d50fe4cd3941958605e27b87e0d895c27)
   - [`treasuryController.sol`](./src/contracts/treasuryController.sol) - Treasury management - [0x6e59986a3e83c0db7c59461582c48e36c32db25b](https://testnet.monadexplorer.com/address/0x6e59986a3e83c0db7c59461582c48e36c32db25b)
   - [`ICO.sol`](./src/contracts/ICO.sol) - Crowdfunding and contribution management - [0x5fcd7b9a4520b717d5b06a7bdcc27d8524ef3329](https://testnet.monadexplorer.com/address/0x5fcd7b9a4520b717d5b06a7bdcc27d8524ef3329)
