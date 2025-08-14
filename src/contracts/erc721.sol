@@ -55,6 +55,7 @@ contract ERC721Constructor is ERC721, ERC721URIStorage, ERC2981 {
         fundsManager = _fundsManager;
         owner = _owner;
         _customBaseURI = baseURI;
+        _nextTokenId = 1;
     }
 
     function setDefaultRoyalty(uint96 feeNumerator) external onlyOwner {
