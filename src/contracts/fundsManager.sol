@@ -32,7 +32,7 @@ contract FundsManager {
     uint256 public totalClaimedPacked;
     uint256 public checkpointNumber;
     uint256 public totalComission;
-    uint256 public initialErc20Value = 10000000 * 1e18;
+    uint256 public initialErc20Value = 1000000 * 1e18;
     uint private unlocked = 1;
 
     mapping(uint => uint) public checkpointAmountToReceive;

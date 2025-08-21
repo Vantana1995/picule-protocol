@@ -92,10 +92,10 @@ contract ICO is IICO {
         newRequest.erc721 = NFT;
         newRequest.manager = owner;
         newRequest.fundsManager_ = fundsManager;
-        newRequest.target = 10000 ether;
+        newRequest.target = 1000 ether;
         newRequest.deadline = type(uint256).max;
         newRequest.minimum = 10000 gwei;
-        newRequest.value = 10000000 * 1e18;
+        newRequest.value = 1000000 * 1e18;
         newRequest.raised = 0;
         newRequest.completed = false;
         IERC20(MPC).mint(newRequest.fundsManager_, newRequest.value);
@@ -121,10 +121,10 @@ contract ICO is IICO {
         newRequest.erc721 = _erc721;
         newRequest.manager = _manager;
         newRequest.fundsManager_ = _fundsManager;
-        newRequest.target = 10000 ether;
+        newRequest.target = 1000 ether;
         newRequest.deadline = block.timestamp + 1 weeks;
         newRequest.minimum = 10000 gwei;
-        newRequest.value = 10000000 * 1e18;
+        newRequest.value = 1000000 * 1e18;
         newRequest.raised = 0;
         newRequest.completed = false;
         icoStarted = true;
