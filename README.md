@@ -15,17 +15,17 @@ Revolutionary value-backed NFTs with permanently locked liquidity that eliminate
 - [`/src/contracts`](./src/contracts) - Core protocol contracts
   - [`erc20.sol`](./src/contracts/erc20.sol) - ERC-20 token implementation - [0x002e13268edf8b3680bbd7b1b3e9e59740b9b008](https://testnet.monadexplorer.com/address/0x002e13268edf8b3680bbd7b1b3e9e59740b9b008)
   - [`erc20Constructor.sol`](./src/contracts/erc20Constructor.sol) - ERC-20 factory constructor
-  - [`erc721.sol`](./src/contracts/erc721.sol) - Picule NFT - [0x0b7d93e656d83d6ca89749991d746429c93b51c5](https://testnet.monadexplorer.com/address/0x0b7d93e656d83d6ca89749991d746429c93b51c5)
-  - [`factory.sol`](./src/contracts/factory.sol) - Pair creation factory - [0x7b2f3f824505518047f08513df6e43ba0992a84a](https://testnet.monadexplorer.com/address/0x7b2f3f824505518047f08513df6e43ba0992a84a)
+  - [`erc721.sol`](./src/contracts/erc721.sol) - Picule NFT - [0x1a91f666527b04fb8dfe8ae05fd2e628e9370bad](https://testnet.monadexplorer.com/address/0x1a91f666527b04fb8dfe8ae05fd2e628e9370bad)
+  - [`factory.sol`](./src/contracts/factory.sol) - Pair creation factory - [0x88f935cc12efc73f1590bfc12178539351b145c5](https://testnet.monadexplorer.com/address/0x88f935cc12efc73f1590bfc12178539351b145c5)
   - [`lpToken.sol`](./src/contracts/lpToken.sol) - Liquidity provider token
   - [`marketplace.sol`](./src/contracts/marketplace.sol) - NFT trading marketplace - [0xe8c3490eed91ba902731ea2bbb69426282604012](https://testnet.monadexplorer.com/address/0xe8c3490eed91ba902731ea2bbb69426282604012)
-  - [`mpcToken.sol`](./src/contracts/mpcToken.sol) - MPC token - [0x9d76e3b5b488ae77e2af8f33ac9fd3771fcc94a8](https://testnet.monadexplorer.com/address/0x9d76e3b5b488ae77e2af8f33ac9fd3771fcc94a8)
-  - [`pair.sol`](./src/contracts/pair.sol) - AMM pool with commission tracking implementation - [0x4cfd18dcf77eed5fc06a8a850eeccabe3556216f](https://testnet.monadexplorer.com/address/0x4cfd18dcf77eed5fc06a8a850eeccabe3556216f)
-  - [`router.sol`](./src/contracts/router.sol) - Swap and liquidity router - [0xacaa112d50fe4cd3941958605e27b87e0d895c27](https://testnet.monadexplorer.com/address/0xacaa112d50fe4cd3941958605e27b87e0d895c27)
+  - [`mpcToken.sol`](./src/contracts/mpcToken.sol) - MPC token - [0xe91df27c401084ec11998766d64717f998b47b33](https://testnet.monadexplorer.com/address/0xe91df27c401084ec11998766d64717f998b47b33)
+  - [`pair.sol`](./src/contracts/pair.sol) - AMM pool with commission tracking implementation - [0xcaa8d5a92dbdc4d9c0c488782cf27a852e618c98](https://testnet.monadexplorer.com/address/0xcaa8d5a92dbdc4d9c0c488782cf27a852e618c98)
+  - [`router.sol`](./src/contracts/router.sol) - Swap and liquidity router - [0x6ac52fc7988cf99a4a66911e248f40838ca56e9d](https://testnet.monadexplorer.com/address/0x6ac52fc7988cf99a4a66911e248f40838ca56e9d)
   - [`treasuryController.sol`](./src/contracts/treasuryController.sol) - Treasury management - [0x6e59986a3e83c0db7c59461582c48e36c32db25b](https://testnet.monadexplorer.com/address/0x6e59986a3e83c0db7c59461582c48e36c32db25b)
-  - [`ICO.sol`](./src/contracts/ICO.sol) - Crowdfunding and contribution management - [0x5fcd7b9a4520b717d5b06a7bdcc27d8524ef3329](https://testnet.monadexplorer.com/address/0x5fcd7b9a4520b717d5b06a7bdcc27d8524ef3329)
-  - [`fundsManager.sol`](./src/contracts/fundsManager.sol) - LP token locking and commission distribution - [0x46614ac919d43f8186eb6fc1482b729eda701e07](https://testnet.monadexplorer.com/address/0x46614ac919d43f8186eb6fc1482b729eda701e07)
-  - [`TokenLaunchManager.sol`](./src/contracts/TokenLaunchManager.sol) - Project creation factory - [0xe2a924d00f705a9a4d19030eaa714695facfad89](https://testnet.monadexplorer.com/address/0xe2a924d00f705a9a4d19030eaa714695facfad89)
+  - [`ICO.sol`](./src/contracts/ICO.sol) - Crowdfunding and contribution management - [0x7927a4bd40ab5a60c4a319ea55424469560e947b](https://testnet.monadexplorer.com/address/0x7927a4bd40ab5a60c4a319ea55424469560e947b)
+  - [`fundsManager.sol`](./src/contracts/fundsManager.sol) - LP token locking and commission distribution - [0xe582fc0dad42d73a9023f801e9e46ddf59ae0856](https://testnet.monadexplorer.com/address/0xe582fc0dad42d73a9023f801e9e46ddf59ae0856)
+  - [`TokenLaunchManager.sol`](./src/contracts/TokenLaunchManager.sol) - Project creation factory - [0xbb29be458dcaa439f1259bc9b42a7240b1d37af5](https://testnet.monadexplorer.com/address/0xbb29be458dcaa439f1259bc9b42a7240b1d37af5)
 
 ### 🔗 Interfaces
 
