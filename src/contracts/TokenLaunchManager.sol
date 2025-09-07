@@ -58,7 +58,8 @@ contract TokenLauncherManager is ITokenLaunchManager {
         string memory tokenSymbol,
         string memory erc721Name,
         string memory erc721Symbol,
-        string memory baseURI
+        string memory baseURI,
+        uint256 _maxSupplyERC721
     )
         external
         returns (
@@ -186,23 +187,24 @@ contract TokenLauncherManager is ITokenLaunchManager {
             }
             // erc721
             mstore(ptr, shl(224, 0xe6a07063))
-            mstore(add(ptr, 0x04), 0x80)
-            mstore(add(ptr, 0x24), 0xC0)
-            mstore(add(ptr, 0x44), _fundsManager)
-            mstore(add(ptr, 0x64), 0x100)
-            mstore(add(ptr, 0x84), mload(erc721Name))
-            mstore(add(ptr, 0xA4), mload(add(erc721Name, 0x20)))
-            mstore(add(ptr, 0xC4), mload(erc721Symbol))
-            mstore(add(ptr, 0xE4), mload(add(erc721Symbol, 0x20)))
-            mstore(add(ptr, 0x104), caller())
-            mstore(add(ptr, 0x124), mload(baseURI))
+            mstore(add(ptr, 0x04), _maxSupplyERC721)
+            mstore(add(ptr, 0x24), 0xA0)
+            mstore(add(ptr, 0x44), 0xE0)
+            mstore(add(ptr, 0x64), _fundsManager)
+            mstore(add(ptr, 0x84), 0x120)
+            mstore(add(ptr, 0xA4), mload(erc721Name))
+            mstore(add(ptr, 0xC4), mload(add(erc721Name, 0x20)))
+            mstore(add(ptr, 0xE4), mload(erc721Symbol))
+            mstore(add(ptr, 0x104), mload(add(erc721Symbol, 0x20)))
+            mstore(add(ptr, 0x124), caller())
+            mstore(add(ptr, 0x144), mload(baseURI))
             for {
                 let i := 0
             } lt(i, mload(baseURI)) {
                 i := add(i, 0x20)
             } {
                 mstore(
-                    add(ptr, add(0x144, i)),
+                    add(ptr, add(0x164, i)),
                     mload(add(add(baseURI, 0x20), i))
                 )
             }

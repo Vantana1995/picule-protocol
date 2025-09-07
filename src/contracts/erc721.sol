@@ -11,6 +11,7 @@ contract ERC721Constructor is ERC721, ERC721URIStorage, ERC2981 {
     string private _name;
     string private _symbol;
     uint256 private _nextTokenId;
+    uint256 private _maxSupply;
     string private _customBaseURI;
     address public fundsManager;
     address public owner;
@@ -44,12 +45,14 @@ contract ERC721Constructor is ERC721, ERC721URIStorage, ERC2981 {
     }
 
     function initialize(
+        uint256 maxSupply_,
         string memory tokenName,
         string memory tokenSymbol,
         address _fundsManager,
         address _owner,
         string memory baseURI
     ) public onlyOnce {
+        _maxSupply = maxSupply_;
         _name = tokenName;
         _symbol = tokenSymbol;
         fundsManager = _fundsManager;
@@ -63,6 +66,7 @@ contract ERC721Constructor is ERC721, ERC721URIStorage, ERC2981 {
     }
 
     function safeMint(address to) public onlyFundsManager returns (uint256) {
+        require(_nextTokenId <= _maxSupply, "Exceed max supply at ERC721");
         uint256 tokenId = _nextTokenId++;
 
         _safeMint(to, tokenId);
@@ -80,6 +84,10 @@ contract ERC721Constructor is ERC721, ERC721URIStorage, ERC2981 {
             bytes(baseURI).length > 0
                 ? string.concat(baseURI, tokenId.toString(), ".json")
                 : "";
+    }
+
+    function maxSupply() public view returns (uint256) {
+        return _maxSupply;
     }
 
     function supportsInterface(

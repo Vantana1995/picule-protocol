@@ -16,7 +16,8 @@ interface ITokenLaunchManager {
         string memory tokenSymbol,
         string memory erc721Name,
         string memory erc721Symbol,
-        string memory baseURI
+        string memory baseURI,
+        uint256 maxSupplyERC721
     )
         external
         returns (
