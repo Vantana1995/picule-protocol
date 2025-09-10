@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity 0.8.30;
+pragma solidity 0.8.28;
 
 import {LPToken} from "./lpToken.sol";
 import {UQ112x112} from "../libraries/UQ112x112.sol";

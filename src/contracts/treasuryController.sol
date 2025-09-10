@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
-pragma solidity 0.8.30;
+pragma solidity 0.8.28;
 
 import {IERC20} from "../interfaces/IERC20.sol";
 
