@@ -45,20 +45,22 @@ contract ERC721Constructor is ERC721, ERC721URIStorage, ERC2981 {
     }
 
     function initialize(
-        uint256 maxSupply_,
         string memory tokenName,
         string memory tokenSymbol,
         address _fundsManager,
         address _owner,
         string memory baseURI
     ) public onlyOnce {
-        _maxSupply = maxSupply_;
         _name = tokenName;
         _symbol = tokenSymbol;
         fundsManager = _fundsManager;
         owner = _owner;
         _customBaseURI = baseURI;
         _nextTokenId = 1;
+    }
+
+    function setMaxSupply(uint256 amount) external onlyOwner {
+        _maxSupply = amount;
     }
 
     function setDefaultRoyalty(uint96 feeNumerator) external onlyOwner {

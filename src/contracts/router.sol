@@ -10,17 +10,17 @@ import {IRouter} from "../interfaces/IRouter.sol";
 contract Router is IRouter {
     address public immutable factory;
     address public immutable WMON;
-    address public erc20Implementation;
+    address public pairImplementation;
 
     modifier ensure(uint256 deadline) {
         require(deadline >= block.timestamp, "ROUTER: EXPIRED");
         _;
     }
 
-    constructor(address _factory, address _wmon, address _erc20) {
+    constructor(address _factory, address _wmon, address _pair) {
         factory = _factory;
         WMON = _wmon;
-        erc20Implementation = _erc20;
+        pairImplementation = _pair;
     }
 
     receive() external payable {
@@ -60,7 +60,7 @@ contract Router is IRouter {
             factory,
             tokenA,
             tokenB,
-            erc20Implementation
+            pairImplementation
         );
         Transfer.safeTransferFrom(tokenA, msg.sender, pair, amountA);
         Transfer.safeTransferFrom(tokenB, msg.sender, pair, amountB);
@@ -93,7 +93,7 @@ contract Router is IRouter {
             factory,
             token,
             WMON,
-            erc20Implementation
+            pairImplementation
         );
         Transfer.safeTransferFrom(token, msg.sender, pair, amountToken);
         IWMON(WMON).deposit{value: amountEth}();
@@ -117,7 +117,7 @@ contract Router is IRouter {
             factory,
             tokenA,
             tokenB,
-            erc20Implementation
+            pairImplementation
         );
         IPair(pair).transferFrom(msg.sender, pair, liquidity);
         (uint amount0, uint amount1) = IPair(pair).burn(to);
@@ -173,7 +173,7 @@ contract Router is IRouter {
             factory,
             tokenA,
             tokenB,
-            erc20Implementation
+            pairImplementation
         );
         uint value = approveMax ? type(uint256).max : liquidity;
         IPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
@@ -204,7 +204,7 @@ contract Router is IRouter {
             factory,
             token,
             WMON,
-            erc20Implementation
+            pairImplementation
         );
         uint value = approveMax ? type(uint256).max : liquidity;
         IPair(pair).permit(msg.sender, address(this), value, deadline, v, r, s);
@@ -228,7 +228,7 @@ contract Router is IRouter {
         amounts = Library.getAmountsOut(
             factory,
             amountIn,
-            erc20Implementation,
+            pairImplementation,
             path
         );
         require(
@@ -239,7 +239,7 @@ contract Router is IRouter {
             factory,
             path[0],
             path[1],
-            erc20Implementation
+            pairImplementation
         );
         Transfer.safeTransferFrom(path[0], msg.sender, pair, amounts[0]);
         _swap(amounts, path, to);
@@ -255,7 +255,7 @@ contract Router is IRouter {
         amounts = Library.getAmountsIn(
             factory,
             amountOut,
-            erc20Implementation,
+            pairImplementation,
             path
         );
         require(amounts[0] <= amountInMax, "ROUTER: EXCESSIVE_INPUT_AMOUNT");
@@ -263,7 +263,7 @@ contract Router is IRouter {
             factory,
             path[0],
             path[1],
-            erc20Implementation
+            pairImplementation
         );
         Transfer.safeTransferFrom(path[0], msg.sender, pair, amounts[0]);
         _swap(amounts, path, to);
@@ -285,7 +285,7 @@ contract Router is IRouter {
         amounts = Library.getAmountsOut(
             factory,
             msg.value,
-            erc20Implementation,
+            pairImplementation,
             path
         );
         require(
@@ -297,7 +297,7 @@ contract Router is IRouter {
             factory,
             path[0],
             path[1],
-            erc20Implementation
+            pairImplementation
         );
         assert(IWMON(WMON).transfer(pair, amounts[0]));
         _swap(amounts, path, to);
@@ -314,7 +314,7 @@ contract Router is IRouter {
         amounts = Library.getAmountsIn(
             factory,
             amountOut,
-            erc20Implementation,
+            pairImplementation,
             path
         );
         require(amounts[0] <= amountInMax, "ROUTER: EXCESSIVE_INPUT_AMOUNT");
@@ -322,7 +322,7 @@ contract Router is IRouter {
             factory,
             path[0],
             path[1],
-            erc20Implementation
+            pairImplementation
         );
         Transfer.safeTransferFrom(path[0], msg.sender, pair, amounts[0]);
         _swap(amounts, path, address(this));
@@ -341,7 +341,7 @@ contract Router is IRouter {
         amounts = Library.getAmountsOut(
             factory,
             amountIn,
-            erc20Implementation,
+            pairImplementation,
             path
         );
         require(
@@ -352,7 +352,7 @@ contract Router is IRouter {
             factory,
             path[0],
             path[1],
-            erc20Implementation
+            pairImplementation
         );
         Transfer.safeTransferFrom(path[0], msg.sender, pair, amounts[0]);
         _swap(amounts, path, address(this));
@@ -376,7 +376,7 @@ contract Router is IRouter {
         amounts = Library.getAmountsIn(
             factory,
             amountOut,
-            erc20Implementation,
+            pairImplementation,
             path
         );
         require(amounts[0] <= msg.value, "ROUTER: EXCESSIVE_INPUT_AMOUNT");
@@ -385,7 +385,7 @@ contract Router is IRouter {
             factory,
             path[0],
             path[1],
-            erc20Implementation
+            pairImplementation
         );
         assert(IWMON(WMON).transfer(pair, amounts[0]));
         _swap(amounts, path, to);
@@ -424,7 +424,7 @@ contract Router is IRouter {
         address[] memory path
     ) public view override returns (uint[] memory amounts) {
         return
-            Library.getAmountsOut(factory, amountIn, erc20Implementation, path);
+            Library.getAmountsOut(factory, amountIn, pairImplementation, path);
     }
 
     function getAmountsIn(
@@ -432,7 +432,7 @@ contract Router is IRouter {
         address[] memory path
     ) public view override returns (uint[] memory amounts) {
         return
-            Library.getAmountsIn(factory, amountOut, erc20Implementation, path);
+            Library.getAmountsIn(factory, amountOut, pairImplementation, path);
     }
 
     // INTERNAL FUNCTION SECTION
@@ -449,7 +449,7 @@ contract Router is IRouter {
             factory,
             tokenA,
             tokenB,
-            erc20Implementation
+            pairImplementation
         );
         require(pair != address(0), "ROUTER: PAIR_NOT_EXIST");
         (uint reserveA, uint reserveB, ) = IPair(pair).getReserves();
@@ -502,14 +502,14 @@ contract Router is IRouter {
                     factory,
                     output,
                     path[i + 2],
-                    erc20Implementation
+                    pairImplementation
                 )
                 : _to;
             address pair = Library.pairFor(
                 factory,
                 input,
                 output,
-                erc20Implementation
+                pairImplementation
             );
             require(pair != address(0), "ROUTER: PAIR_NOT_FOUND");
             IPair(pair).swap(amount0Out, amount1Out, to);

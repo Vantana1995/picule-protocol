@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity 0.8.30;
+pragma solidity 0.8.28;
 
 interface InterfaceLPToken {
     event Transfer(address indexed from, address indexed to, uint256 value);

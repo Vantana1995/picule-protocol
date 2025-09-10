@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.30;
+pragma solidity 0.8.28;
 
 interface IERC721 {
     function safeMint(address to) external returns (uint256);
@@ -22,4 +22,8 @@ interface IERC721 {
         address to,
         uint256 tokenId
     ) external;
+
+    function setMaxSupply(uint256 amount) external;
+
+    function maxSupply() external returns (uint256);
 }

@@ -784,12 +784,12 @@ contract FundsManager {
         assembly {
             let ptr := mload(0x40)
             mstore(ptr, sload(totalLpLocked.slot))
-            mstore(ptr, div(mul(mload(ptr), 1), 100))
-            // Require amount >= 1% of totalLpLocked (minimum threshold)
-            if lt(amount, mload(ptr)) {
-                mstore(0x160, 0x1c4f7a95) // Custom error: INSUFFICIENT_AMOUNT
-                revert(0x160, 0x04)
-            }
+            // mstore(ptr, div(mul(mload(ptr), 1), 100000))
+            // // Require amount >= 1% of totalLpLocked (minimum threshold)
+            // if lt(amount, mload(ptr)) {
+            //     mstore(0x160, 0x1c4f7a95) // Custom error: INSUFFICIENT_AMOUNT
+            //     revert(0x160, 0x04)q
+            // }
             // store in memory lpToken address
             let _pair := sload(pair.slot)
             mstore(0x40, shl(224, 0xcca3e832))

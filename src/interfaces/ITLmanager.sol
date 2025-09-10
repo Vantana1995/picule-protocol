@@ -1,6 +1,6 @@
 //SPDX-License-Identifier: MIT
 
-pragma solidity 0.8.30;
+pragma solidity 0.8.28;
 
 interface ITokenLaunchManager {
     event ProjectCreated(
@@ -16,8 +16,7 @@ interface ITokenLaunchManager {
         string memory tokenSymbol,
         string memory erc721Name,
         string memory erc721Symbol,
-        string memory baseURI,
-        uint256 maxSupplyERC721
+        string memory baseURI
     )
         external
         returns (

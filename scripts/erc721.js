@@ -7,13 +7,14 @@ const path = require("path");
 const rpcURL = process.env.RPC;
 const privateKey = process.env.PRIVATE_KEY;
 
-const abi = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../metadata/erc721.json"), "utf-8")
+const artifactData = JSON.parse(
+  fs.readFileSync(
+    path.join(__dirname, "../artifacts/erc721constructor/erc721constructor.json"),
+    "utf-8"
+  )
 );
-const bytecode = fs
-  .readFileSync(path.join(__dirname, "../metadata/erc721.txt"), "utf-8")
-  .trim();
-
+const abi = artifactData.abi;
+const bytecode = artifactData.bytecode;
 const web3 = new Web3(rpcURL);
 
 async function deploy() {

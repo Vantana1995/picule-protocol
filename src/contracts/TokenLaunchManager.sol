@@ -26,6 +26,8 @@ contract TokenLauncherManager is ITokenLaunchManager {
     address public erc20Constructor;
     address public erc721Constructor;
     address public fundsManager;
+    address public factory;
+    address public wmon;
 
     uint256 private projectNum;
 
@@ -44,13 +46,17 @@ contract TokenLauncherManager is ITokenLaunchManager {
         address _router,
         address _erc20Implementation,
         address _erc721Implementation,
-        address _FMImplementation
+        address _FMImplementation,
+        address _factory,
+        address _wmon
     ) external _isInitialized {
         icoManager = _icoManager;
         router = _router;
         erc20Constructor = _erc20Implementation;
         erc721Constructor = _erc721Implementation;
         fundsManager = _FMImplementation;
+        factory = _factory;
+        wmon = _wmon;
     }
 
     function createProject(
@@ -58,8 +64,7 @@ contract TokenLauncherManager is ITokenLaunchManager {
         string memory tokenSymbol,
         string memory erc721Name,
         string memory erc721Symbol,
-        string memory baseURI,
-        uint256 _maxSupplyERC721
+        string memory baseURI
     )
         external
         returns (
@@ -186,40 +191,41 @@ contract TokenLauncherManager is ITokenLaunchManager {
                 revert(0x00, 0x04)
             }
             // erc721
-            mstore(ptr, shl(224, 0xe6a07063))
-            mstore(add(ptr, 0x04), _maxSupplyERC721)
-            mstore(add(ptr, 0x24), 0xA0)
-            mstore(add(ptr, 0x44), 0xE0)
-            mstore(add(ptr, 0x64), _fundsManager)
-            mstore(add(ptr, 0x84), 0x120)
+            mstore(ptr, shl(224, 0xdb74ee31))
+            mstore(add(ptr, 0x04), 0xA0)
+            mstore(add(ptr, 0x24), 0xE0)
+            mstore(add(ptr, 0x44), _fundsManager)
+            mstore(add(ptr, 0x64), caller())
+            mstore(add(ptr, 0x84), 0xA0)
             mstore(add(ptr, 0xA4), mload(erc721Name))
             mstore(add(ptr, 0xC4), mload(add(erc721Name, 0x20)))
             mstore(add(ptr, 0xE4), mload(erc721Symbol))
             mstore(add(ptr, 0x104), mload(add(erc721Symbol, 0x20)))
-            mstore(add(ptr, 0x124), caller())
-            mstore(add(ptr, 0x144), mload(baseURI))
+            mstore(add(ptr, 0x124), mload(baseURI))
             for {
                 let i := 0
             } lt(i, mload(baseURI)) {
                 i := add(i, 0x20)
             } {
                 mstore(
-                    add(ptr, add(0x164, i)),
+                    add(ptr, add(0x144, i)),
                     mload(add(add(baseURI, 0x20), i))
                 )
             }
-            mstore(0x00, add(0x124, mul(div(add(mload(baseURI), 31), 32), 32)))
+            mstore(0x00, add(0x144, mul(div(add(mload(baseURI), 31), 32), 32)))
             if iszero(call(gas(), erc721, 0, ptr, mload(0x00), 0x00, 0x00)) {
                 mstore(0x00, 0xac833fde)
                 revert(0x00, 0x04)
             }
             // fundsManager
-            mstore(ptr, shl(224, 0x103524ab))
+            mstore(ptr, shl(224, 0x7f631096))
             mstore(add(ptr, 0x04), token)
             mstore(add(ptr, 0x24), erc721)
             mstore(add(ptr, 0x44), caller())
             mstore(add(ptr, 0x64), icoContract)
-            if iszero(call(gas(), _fundsManager, 0, ptr, 0x84, 0x00, 0x00)) {
+            mstore(add(ptr, 0x84), sload(factory.slot))
+            mstore(add(ptr, 0xA4), sload(wmon.slot))
+            if iszero(call(gas(), _fundsManager, 0, ptr, 0xC4, 0x00, 0x00)) {
                 mstore(0x00, 0xe6262400)
                 revert(0x00, 0x04)
             }

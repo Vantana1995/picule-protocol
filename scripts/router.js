@@ -10,13 +10,14 @@ const factory = process.env.FACTORY;
 const weth = process.env.WETH;
 const erc20 = process.env.ERC20;
 
-const abi = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../metadata/router.json"), "utf-8")
+const artifactData = JSON.parse(
+  fs.readFileSync(
+    path.join(__dirname, "../artifacts/router/router.json"),
+    "utf-8"
+  )
 );
-const bytecode = fs
-  .readFileSync(path.join(__dirname, "../metadata/router.txt"), "utf-8")
-  .trim();
-
+const abi = artifactData.abi;
+const bytecode = artifactData.bytecode;
 const web3 = new Web3(rpcURL);
 
 async function deploy() {

@@ -9,13 +9,14 @@ const privateKey = process.env.PRIVATE_KEY;
 const pair = process.env.PAIR;
 const treasuryController = process.env.TreasuryController;
 
-const abi = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../metadata/factory.json"), "utf-8")
+const artifactData = JSON.parse(
+  fs.readFileSync(
+    path.join(__dirname, "../artifacts/factory/factory.json"),
+    "utf-8"
+  )
 );
-const bytecode = fs
-  .readFileSync(path.join(__dirname, "../metadata/factory.txt"), "utf-8")
-  .trim();
-
+const abi = artifactData.abi;
+const bytecode = artifactData.bytecode;
 const web3 = new Web3(rpcURL);
 
 async function deploy() {

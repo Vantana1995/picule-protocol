@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity 0.8.30;
+pragma solidity 0.8.28;
 import {IPair} from "../interfaces/IPair.sol";
 
 library Library {

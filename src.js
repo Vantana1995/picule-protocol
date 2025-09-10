@@ -5,7 +5,7 @@ require("dotenv").config();
 const web3 = new Web3("https://testnet-rpc.monad.xyz");
 
 // Адрес контракта
-const contractAddress = "0x7927a4bd40ab5a60c4a319ea55424469560e947b";
+const contractAddress = "0xdb93fe21e7a4126c7372e549cbbf9ba191aa1176";
 
 // ABI только для нужной функции
 const contractABI = [

@@ -15,34 +15,57 @@ const tlm = process.env.TLM;
 const router = process.env.ROUTER;
 const ico = process.env.ICO;
 const nft = process.env.NFT_ADDRESS;
-const weth = process.env.WETH
+const weth = process.env.WETH;
 
-const factoryMetadata = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../metadata/factory.json"), "utf-8")
-);
-
-const mpcMetadata = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../metadata/mpc.json"), "utf-8")
-);
-
-const erc721Metadata = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../metadata/erc721.json"), "utf-8")
-);
-
-const fundsManagerMetadata = JSON.parse(
+const factoryArtifact = JSON.parse(
   fs.readFileSync(
-    path.join(__dirname, "../metadata/fundsManager.json"),
+    path.join(__dirname, "../artifacts/factory/factory.json"),
     "utf-8"
   )
 );
+const factoryMetadata = factoryArtifact.abi;
 
-const icoMetadata = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../metadata/ico.json"), "utf-8")
+const mpcArtifact = JSON.parse(
+  fs.readFileSync(
+    path.join(__dirname, "../artifacts/mrpiculetoken/mrpiculetoken.json"),
+    "utf-8"
+  )
 );
+const mpcMetadata = mpcArtifact.abi;
 
-const tlmMetadata = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../metadata/tlm.json"), "utf-8")
+const erc721Artifact = JSON.parse(
+  fs.readFileSync(
+    path.join(
+      __dirname,
+      "../artifacts/erc721constructor/erc721constructor.json"
+    ),
+    "utf-8"
+  )
 );
+const erc721Metadata = erc721Artifact.abi;
+
+const fundsManagerArtifact = JSON.parse(
+  fs.readFileSync(
+    path.join(__dirname, "../artifacts/fundsManager/fundsManager.json"),
+    "utf-8"
+  )
+);
+const fundsManagerMetadata = fundsManagerArtifact.abi;
+const icoArtifact = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "../artifacts/ICO/ICO.json"), "utf-8")
+);
+const icoMetadata = icoArtifact.abi;
+
+const tlmArtifact = JSON.parse(
+  fs.readFileSync(
+    path.join(
+      __dirname,
+      "../artifacts/TokenLauncherManager/TokenLauncherManager.json"
+    ),
+    "utf-8"
+  )
+);
+const tlmMetadata = tlmArtifact.abi;
 const web3 = new Web3(rpcURL);
 const account = web3.eth.accounts.privateKeyToAccount(privateKey);
 web3.eth.accounts.wallet.add(account);
@@ -147,7 +170,9 @@ async function initializeTLM() {
     router,
     erc20,
     erc721,
-    fundsManager
+    fundsManager,
+    factory,
+    weth
   );
 
   const gasEstimate = await initializeData.estimateGas({
@@ -162,6 +187,22 @@ async function initializeTLM() {
   console.log("initialization TLM successfull:", tx.transactionHash);
 }
 
+async function setMaxSupply() {
+  const contract = new web3.eth.Contract(erc721Metadata, erc721);
+  const initializeData = contract.methods.setMaxSupply(1111);
+
+  const gasEstimate = await initializeData.estimateGas({
+    from: account.address,
+  });
+
+  const tx = await initializeData.send({
+    from: account.address,
+    gas: gasEstimate,
+    gasPrice: await web3.eth.getGasPrice(),
+  });
+  console.log("initialization ERC721 successfull:", tx.transactionHash);
+}
+
 async function main() {
   await initializeFactory();
   await initializeMPC();
@@ -169,6 +210,7 @@ async function main() {
   await initializeFundsManager();
   await initializeICO();
   await initializeTLM();
+  await setMaxSupply();
 }
 
 main().catch(console.error);
