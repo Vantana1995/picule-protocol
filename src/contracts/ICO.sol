@@ -94,7 +94,7 @@ contract ICO is IICO {
         newRequest.fundsManager_ = fundsManager;
         newRequest.target = 1000 ether;
         newRequest.deadline = type(uint256).max;
-        newRequest.minimum = 10000 gwei;
+        newRequest.minimum = 1 wei;
         newRequest.value = 1000000 * 1e18;
         newRequest.raised = 0;
         newRequest.completed = false;
@@ -123,7 +123,7 @@ contract ICO is IICO {
         newRequest.fundsManager_ = _fundsManager;
         newRequest.target = 1000 ether;
         newRequest.deadline = block.timestamp + 1 weeks;
-        newRequest.minimum = 10000 gwei;
+        newRequest.minimum = 1 wei;
         newRequest.value = 1000000 * 1e18;
         newRequest.raised = 0;
         newRequest.completed = false;
@@ -151,11 +151,6 @@ contract ICO is IICO {
             // require(request.deadline > block.timestamp,"CROWDFOUNDING: REQUEST_TIME_FINISHED");
             if iszero(gt(sload(add(mload(0x100), 5)), timestamp())) {
                 mstore(0x180, 0xeceba2af)
-                revert(0x180, 0x04)
-            }
-            // require(msg.value >= request.minimum, "CROWDFOUNDING: TOO_LOW_BUDGET");
-            if lt(callvalue(), sload(add(mload(0x100), 6))) {
-                mstore(0x180, 0x338de76e)
                 revert(0x180, 0x04)
             }
             // uint total = msg.value + request.raised;

@@ -122,7 +122,7 @@ contract FundsManager {
                 revert(0x00, 0x04)
             }
 
-            // store in memory sotage data which will be used more than 1 time
+            // store in memory storage data which will be used more than 1 time
             mstore(0x100, sload(WMON.slot))
             mstore(0x120, sload(token.slot))
             mstore(0x140, sload(erc721.slot))
