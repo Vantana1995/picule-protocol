@@ -4,7 +4,7 @@ const { Web3 } = require("Web3");
 const fs = require("fs");
 const path = require("path");
 
-const rpcURL = process.env.RPC;
+const rpcURL = process.env.RPC_URL;
 const privateKey = process.env.PRIVATE_KEY;
 const mpc = process.env.MPC;
 const erc721 = process.env.ERC721;
@@ -12,11 +12,12 @@ const fundsManager = process.env.FUNDS_MANAGER;
 const tlm = process.env.TLM;
 const factory = process.env.FACTORY;
 
-const artifactData = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../artifacts/ICO/ICO.json"), "utf-8")
+const abi = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "../metadata/ico.json"), "utf-8")
 );
-const abi = artifactData.abi;
-const bytecode = artifactData.bytecode;
+const bytecode = fs
+  .readFileSync(path.join(__dirname, "../metadata/ico.txt"), "utf-8")
+  .trim();
 const web3 = new Web3(rpcURL);
 
 async function deploy() {

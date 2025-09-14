@@ -10,11 +10,9 @@ artifacts/
 build/
 
 # Scripts
-.json
 compile.js
-contribute.js
 extract-artifacts.js
-funds.js
+
 
 # IDE and Editor files
 .vscode/

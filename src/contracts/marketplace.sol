@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
-pragma solidity 0.8.28;
+pragma solidity 0.8.30;
 
 import {IERC721} from "../interfaces/IERC721.sol";
 import {IERC2981} from "../../node_modules/@openzeppelin/contracts/interfaces/IERC2981.sol";

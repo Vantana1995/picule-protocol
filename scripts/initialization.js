@@ -4,7 +4,7 @@ const { Web3 } = require("Web3");
 const fs = require("fs");
 const path = require("path");
 
-const rpcURL = process.env.RPC;
+const rpcURL = process.env.RPC_URL;
 const privateKey = process.env.PRIVATE_KEY;
 const factory = process.env.FACTORY;
 const erc20 = process.env.ERC20;
@@ -17,55 +17,32 @@ const ico = process.env.ICO;
 const nft = process.env.NFT_ADDRESS;
 const weth = process.env.WETH;
 
-const factoryArtifact = JSON.parse(
-  fs.readFileSync(
-    path.join(__dirname, "../artifacts/factory/factory.json"),
-    "utf-8"
-  )
+const factoryMetadata = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "../metadata/factory.json"), "utf-8")
 );
-const factoryMetadata = factoryArtifact.abi;
 
-const mpcArtifact = JSON.parse(
-  fs.readFileSync(
-    path.join(__dirname, "../artifacts/mrpiculetoken/mrpiculetoken.json"),
-    "utf-8"
-  )
+const mpcMetadata = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "../metadata/mpc.json"), "utf-8")
 );
-const mpcMetadata = mpcArtifact.abi;
 
-const erc721Artifact = JSON.parse(
-  fs.readFileSync(
-    path.join(
-      __dirname,
-      "../artifacts/erc721constructor/erc721constructor.json"
-    ),
-    "utf-8"
-  )
+const erc721Metadata = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "../metadata/erc721.json"), "utf-8")
 );
-const erc721Metadata = erc721Artifact.abi;
 
-const fundsManagerArtifact = JSON.parse(
+const fundsManagerMetadata = JSON.parse(
   fs.readFileSync(
-    path.join(__dirname, "../artifacts/fundsManager/fundsManager.json"),
+    path.join(__dirname, "../metadata/fundsManager.json"),
     "utf-8"
   )
 );
-const fundsManagerMetadata = fundsManagerArtifact.abi;
-const icoArtifact = JSON.parse(
-  fs.readFileSync(path.join(__dirname, "../artifacts/ICO/ICO.json"), "utf-8")
-);
-const icoMetadata = icoArtifact.abi;
 
-const tlmArtifact = JSON.parse(
-  fs.readFileSync(
-    path.join(
-      __dirname,
-      "../artifacts/TokenLauncherManager/TokenLauncherManager.json"
-    ),
-    "utf-8"
-  )
+const icoMetadata = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "../metadata/ico.json"), "utf-8")
 );
-const tlmMetadata = tlmArtifact.abi;
+
+const tlmMetadata = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "../metadata/tlm.json"), "utf-8")
+);
 const web3 = new Web3(rpcURL);
 const account = web3.eth.accounts.privateKeyToAccount(privateKey);
 web3.eth.accounts.wallet.add(account);

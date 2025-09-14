@@ -4,18 +4,17 @@ const { Web3 } = require("Web3");
 const fs = require("fs");
 const path = require("path");
 
-const rpcURL = process.env.RPC;
+const rpcURL = process.env.RPC_URL;
 const privateKey = process.env.PRIVATE_KEY;
 
-const artifactData = JSON.parse(
-  fs.readFileSync(
-    path.join(__dirname, "../artifacts/erc20/erc20.json"),
-    "utf-8"
-  )
+const abi = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "../metadata/erc20.json"), "utf-8")
 );
-const abi = artifactData.abi;
-const bytecode = artifactData.bytecode;
+const bytecode = fs
+  .readFileSync(path.join(__dirname, "../metadata/erc20.txt"), "utf-8")
+  .trim();
 const web3 = new Web3(rpcURL);
+
 
 async function deploy() {
   const account = web3.eth.accounts.privateKeyToAccount(privateKey);

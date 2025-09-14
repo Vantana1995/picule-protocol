@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: BSL-1.1
-pragma solidity 0.8.28;
+pragma solidity 0.8.30;
 
 /*
  * Business Source License 1.1
@@ -92,7 +92,7 @@ contract ICO is IICO {
         newRequest.erc721 = NFT;
         newRequest.manager = owner;
         newRequest.fundsManager_ = fundsManager;
-        newRequest.target = 1000 ether;
+        newRequest.target = 1 ether;
         newRequest.deadline = type(uint256).max;
         newRequest.minimum = 1 wei;
         newRequest.value = 1000000 * 1e18;
@@ -121,7 +121,7 @@ contract ICO is IICO {
         newRequest.erc721 = _erc721;
         newRequest.manager = _manager;
         newRequest.fundsManager_ = _fundsManager;
-        newRequest.target = 1000 ether;
+        newRequest.target = 1 ether;
         newRequest.deadline = block.timestamp + 1 weeks;
         newRequest.minimum = 1 wei;
         newRequest.value = 1000000 * 1e18;
