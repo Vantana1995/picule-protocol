@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.30;
 
-import {ERC721} from "../../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import {ERC721URIStorage} from "../../node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import {Strings} from "../../node_modules/@openzeppelin/contracts/utils/Strings.sol";
-import {ERC2981} from "../../node_modules/@openzeppelin/contracts/token/common/ERC2981.sol";
+import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import {ERC721URIStorage} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
+import {ERC2981} from "@openzeppelin/contracts/token/common/ERC2981.sol";
 
 contract ERC721Constructor is ERC721, ERC721URIStorage, ERC2981 {
     using Strings for uint256;

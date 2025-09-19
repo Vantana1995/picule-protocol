@@ -11,7 +11,7 @@ build/
 
 # Scripts
 compile.js
-extract-artifacts.js
+verify-env-contracts.js
 
 
 # IDE and Editor files

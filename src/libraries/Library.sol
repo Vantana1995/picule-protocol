@@ -18,7 +18,7 @@ library Library {
         address factory,
         address tokenA,
         address tokenB,
-        address erc20
+        address pairImplementation
     ) internal pure returns (address pair) {
         (address token0, address token1) = sortTokens(tokenA, tokenB);
         assembly ("memory-safe") {
@@ -28,7 +28,7 @@ library Library {
             let ptr := mload(0x40)
             mstore(add(ptr, 0x38), factory)
             mstore(add(ptr, 0x24), 0x5af43d82803e903d91602b57fd5bf3ff)
-            mstore(add(ptr, 0x14), erc20)
+            mstore(add(ptr, 0x14), pairImplementation)
             mstore(ptr, 0x3d602d80600a3d3981f3363d3d373d3d3d363d73)
             mstore(add(ptr, 0x58), salt)
             mstore(add(ptr, 0x78), keccak256(add(ptr, 0x0c), 0x37))
@@ -43,11 +43,11 @@ library Library {
         address factory,
         address tokenA,
         address tokenB,
-        address erc20
+        address pairImplementation
     ) internal view returns (uint reserveA, uint reserveB) {
         (address token0, ) = sortTokens(tokenA, tokenB);
         (uint reserve0, uint reserve1, ) = IPair(
-            pairFor(factory, tokenA, tokenB, erc20)
+            pairFor(factory, tokenA, tokenB, pairImplementation)
         ).getReserves();
         (reserveA, reserveB) = tokenA == token0
             ? (reserve0, reserve1)
@@ -101,7 +101,7 @@ library Library {
     function getAmountsOut(
         address factory,
         uint amountIn,
-        address erc20,
+        address pairImplementation,
         address[] memory path
     ) internal view returns (uint[] memory amounts) {
         require(path.length >= 2, "Library: INVALID_PATH");
@@ -112,7 +112,7 @@ library Library {
                 factory,
                 path[i],
                 path[i + 1],
-                erc20
+                pairImplementation
             );
             amounts[i + 1] = getAmountOut(amounts[i], reserveIn, reserveOut);
         }
@@ -121,7 +121,7 @@ library Library {
     function getAmountsIn(
         address factory,
         uint amountOut,
-        address erc20,
+        address pairImplementation,
         address[] memory path
     ) internal view returns (uint[] memory amounts) {
         require(path.length == 2, "Library:INVALID_PATH");
@@ -132,7 +132,7 @@ library Library {
                 factory,
                 path[i - 1],
                 path[i],
-                erc20
+                pairImplementation
             );
             amounts[i - 1] = getAmountIn(amounts[i], reserveIn, reserveOut);
         }

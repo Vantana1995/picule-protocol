@@ -100,13 +100,13 @@ contract Factory is IFactory {
             mstore(
                 0x00,
                 or(
-                    shr(0xe8, shl(0x60, implementation)),
+                    shr(232, shl(96, implementation)),
                     0x3d602d80600a3d3981f3363d3d373d3d3d363d73000000
                 )
             )
             mstore(
                 0x20,
-                or(shl(0x78, implementation), 0x5af43d82803e903d91602b57fd5bf3)
+                or(shl(120, implementation), 0x5af43d82803e903d91602b57fd5bf3)
             )
             pair := create2(0, 0x09, 0x37, mload(0x1C0))
             // selector := 0xf8c8765e for (initialize(address, address, address, address))

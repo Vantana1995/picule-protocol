@@ -2,7 +2,7 @@
 pragma solidity 0.8.30;
 
 import {IERC721} from "../interfaces/IERC721.sol";
-import {IERC2981} from "../../node_modules/@openzeppelin/contracts/interfaces/IERC2981.sol";
+import {IERC2981} from "@openzeppelin/contracts/interfaces/IERC2981.sol";
 
 contract Marketplace {
     uint256 public marketplaceFee = 250;

@@ -112,13 +112,13 @@ contract TokenLauncherManager is ITokenLaunchManager {
             mstore(
                 ptr,
                 or(
-                    shr(0xe8, shl(0x60, copy20)),
+                    shr(232, shl(96, copy20)),
                     0x3d602d80600a3d3981f3363d3d373d3d3d363d73000000
                 )
             )
             mstore(
                 add(ptr, 0x20),
-                or(shl(0x78, copy20), 0x5af43d82803e903d91602b57fd5bf3)
+                or(shl(120, copy20), 0x5af43d82803e903d91602b57fd5bf3)
             )
             token := create2(0, add(ptr, 0x09), 0x37, mload(add(ptr, 0x60)))
             if iszero(token) {
@@ -133,13 +133,13 @@ contract TokenLauncherManager is ITokenLaunchManager {
             mstore(
                 ptr,
                 or(
-                    shr(0xe8, shl(0x60, copy721)),
+                    shr(232, shl(96, copy721)),
                     0x3d602d80600a3d3981f3363d3d373d3d3d363d73000000
                 )
             )
             mstore(
                 add(ptr, 0x20),
-                or(shl(0x78, copy721), 0x5af43d82803e903d91602b57fd5bf3)
+                or(shl(120, copy721), 0x5af43d82803e903d91602b57fd5bf3)
             )
             erc721 := create2(0, add(ptr, 0x09), 0x37, mload(add(ptr, 0x40)))
             if iszero(erc721) {
@@ -156,13 +156,13 @@ contract TokenLauncherManager is ITokenLaunchManager {
             mstore(
                 ptr,
                 or(
-                    shr(0xe8, shl(0x60, copyFM)),
+                    shr(232, shl(96, copyFM)),
                     0x3d602d80600a3d3981f3363d3d373d3d3d363d73000000
                 )
             )
             mstore(
                 add(ptr, 0x20),
-                or(shl(0x78, copyFM), 0x5af43d82803e903d91602b57fd5bf3)
+                or(shl(120, copyFM), 0x5af43d82803e903d91602b57fd5bf3)
             )
             _fundsManager := create2(
                 0,
