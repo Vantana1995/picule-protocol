@@ -13,19 +13,19 @@ Revolutionary value-backed NFTs with permanently locked liquidity that eliminate
 ### 📋 Smart Contracts
 
 - [`/src/contracts`](./src/contracts) - Core protocol contracts
-  - [`erc20.sol`](./src/contracts/erc20.sol) - ERC-20 token implementation - [0x002e13268edf8b3680bbd7b1b3e9e59740b9b008](https://testnet.monadexplorer.com/address/0x002e13268edf8b3680bbd7b1b3e9e59740b9b008)
+  - [`erc20.sol`](./src/contracts/erc20.sol) - ERC-20 token implementation - [0x912db3dc33dc9798ceb45e2da919acbaa29d2565](https://sepolia.etherscan.io/address/0x912db3dc33dc9798ceb45e2da919acbaa29d2565)
   - [`erc20Constructor.sol`](./src/contracts/erc20Constructor.sol) - ERC-20 factory constructor
-  - [`erc721.sol`](./src/contracts/erc721.sol) - Picule NFT - [0x628885763fc5f4009626e7b596f466dec36d0e02](https://testnet.monadexplorer.com/address/0x628885763fc5f4009626e7b596f466dec36d0e02)
-  - [`factory.sol`](./src/contracts/factory.sol) - Pair creation factory - [0xf6a6500d4bed8ab7045c2eb35828eb2b4bae1644](https://testnet.monadexplorer.com/address/0xf6a6500d4bed8ab7045c2eb35828eb2b4bae1644)
+  - [`erc721.sol`](./src/contracts/erc721.sol) - Picule NFT - [0x1867ea756e38899d725479109ae678758518c667](https://sepolia.etherscan.io/address/0x1867ea756e38899d725479109ae678758518c667)
+  - [`factory.sol`](./src/contracts/factory.sol) - Pair creation factory - [0x7a0ba2f48ecc7db655cd5890e1e53b01196c3616](https://sepolia.etherscan.io/address/0x7a0ba2f48ecc7db655cd5890e1e53b01196c3616)
   - [`lpToken.sol`](./src/contracts/lpToken.sol) - Liquidity provider token
-  - [`marketplace.sol`](./src/contracts/marketplace.sol) - NFT trading marketplace - [0x5b1c95f15fe45a1cf2626188042602c3ae30a902](https://testnet.monadexplorer.com/address/0x5b1c95f15fe45a1cf2626188042602c3ae30a902)
-  - [`mpcToken.sol`](./src/contracts/mpcToken.sol) - MPC token - [0x28e83e1e16e5d2254d77879e71cc021b0205223c](https://testnet.monadexplorer.com/address/0x28e83e1e16e5d2254d77879e71cc021b0205223c)
-  - [`pair.sol`](./src/contracts/pair.sol) - AMM pool with commission tracking implementation - [0xcaa8d5a92dbdc4d9c0c488782cf27a852e618c98](https://testnet.monadexplorer.com/address/0xcaa8d5a92dbdc4d9c0c488782cf27a852e618c98)
-  - [`router.sol`](./src/contracts/router.sol) - Swap and liquidity router - [0x6ac52fc7988cf99a4a66911e248f40838ca56e9d](https://testnet.monadexplorer.com/address/0x6ac52fc7988cf99a4a66911e248f40838ca56e9d)
-  - [`treasuryController.sol`](./src/contracts/treasuryController.sol) - Treasury management - [0x6e59986a3e83c0db7c59461582c48e36c32db25b](https://testnet.monadexplorer.com/address/0x6e59986a3e83c0db7c59461582c48e36c32db25b)
-  - [`ICO.sol`](./src/contracts/ICO.sol) - Crowdfunding and contribution management - [0xb53b1a9ea896af728a9c2d7d40cb5a53168ed835](https://testnet.monadexplorer.com/address/0xb53b1a9ea896af728a9c2d7d40cb5a53168ed835)
-  - [`fundsManager.sol`](./src/contracts/fundsManager.sol) - LP token locking and commission distribution - [0xcc068c35e60a8c0a3cc1c057bdf49413e05cb04a](https://testnet.monadexplorer.com/address/0xcc068c35e60a8c0a3cc1c057bdf49413e05cb04a)
-  - [`TokenLaunchManager.sol`](./src/contracts/TokenLaunchManager.sol) - Project creation factory - [0x30334e7455328cd59ff0486735d9f014dad80fa4](https://testnet.monadexplorer.com/address/0x30334e7455328cd59ff0486735d9f014dad80fa4)
+  - [`marketplace.sol`](./src/contracts/marketplace.sol) - NFT trading marketplace - [0x6b705c2e5ab18eb9b888ba317420d9f1c5a46dc2](https://sepolia.etherscan.io/address/0x6b705c2e5ab18eb9b888ba317420d9f1c5a46dc2)
+  - [`mpcToken.sol`](./src/contracts/mpcToken.sol) - MPC token - [0x79fd213135a9f948f7c7abf281f65e62decf5ed8](https://sepolia.etherscan.io/address/0x79fd213135a9f948f7c7abf281f65e62decf5ed8)
+  - [`pair.sol`](./src/contracts/pair.sol) - AMM pool with commission tracking implementation - [0x2248d1716383a3a96e60aa17b8280006e0a285c5](https://sepolia.etherscan.io/address/0x2248d1716383a3a96e60aa17b8280006e0a285c5)
+  - [`router.sol`](./src/contracts/router.sol) - Swap and liquidity router - [0xeadc04541ee096a49e45ab3a3ef14a65d70ae85d](https://sepolia.etherscan.io/address/0xeadc04541ee096a49e45ab3a3ef14a65d70ae85d)
+  - [`treasuryController.sol`](./src/contracts/treasuryController.sol) - Treasury management - [0x405c002ae48c2df956c9be551e4bfad066bf31d0](https://sepolia.etherscan.io/address/0x405c002ae48c2df956c9be551e4bfad066bf31d0)
+  - [`ICO.sol`](./src/contracts/ICO.sol) - Crowdfunding and contribution management - [0xf551cce75e94b08409cc4b6f69132abee27324c3](https://sepolia.etherscan.io/address/0xf551cce75e94b08409cc4b6f69132abee27324c3)
+  - [`fundsManager.sol`](./src/contracts/fundsManager.sol) - LP token locking and commission distribution - [0x6051700da98d38e47db2de3c8b670158ff24671d](https://testnet.monadexplorer.com/address/0x6051700da98d38e47db2de3c8b670158ff24671d)
+  - [`TokenLaunchManager.sol`](./src/contracts/TokenLaunchManager.sol) - Project creation factory - [0x2223e98224a6c1f19dfba9e6f249606cdc21bd9d](https://sepolia.etherscan.io/address/0x2223e98224a6c1f19dfba9e6f249606cdc21bd9d)
 
 ### 🔗 Interfaces
 
