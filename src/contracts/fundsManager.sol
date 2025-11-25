@@ -21,7 +21,7 @@ import {Pair} from "./pair.sol";
 contract FundsManager {
     address public icoManager;
     address public Factory;
-    address public WMON;
+    address public WETH;
     address public pair;
 
     address public token;
@@ -100,14 +100,14 @@ contract FundsManager {
         address _manager,
         address _icoManager,
         address _factory,
-        address _wmon
+        address _weth
     ) external initializer {
         token = _erc20;
         erc721 = _erc721;
         manager = _manager;
         icoManager = _icoManager;
         Factory = _factory;
-        WMON = _wmon;
+        WETH = _weth;
     }
 
     receive() external payable {
@@ -123,7 +123,7 @@ contract FundsManager {
             }
 
             // store in memory storage data which will be used more than 1 time
-            mstore(0x100, sload(WMON.slot))
+            mstore(0x100, sload(WETH.slot))
             mstore(0x120, sload(token.slot))
             mstore(0x140, sload(erc721.slot))
             mstore(0x160, sload(manager.slot))
@@ -269,7 +269,7 @@ contract FundsManager {
             }
 
             mstore(0x00, sload(token.slot))
-            mstore(0x20, sload(WMON.slot))
+            mstore(0x20, sload(WETH.slot))
             mstore(0x120, mload(0x00))
             mstore(0x140, mload(0x20))
             // Determine token order  token0 and token1
@@ -488,7 +488,7 @@ contract FundsManager {
             mstore(0x200, div(mload(0x200), 1000000000000000000))
             // Determine token order  token0 and token1
             mstore(0x00, sload(token.slot))
-            mstore(0x20, sload(WMON.slot))
+            mstore(0x20, sload(WETH.slot))
             mstore(0x220, mload(0x00))
             mstore(0x240, mload(0x20))
 

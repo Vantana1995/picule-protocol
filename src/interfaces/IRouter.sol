@@ -4,7 +4,7 @@ pragma solidity 0.8.30;
 interface IRouter {
     function factory() external view returns (address);
 
-    function WMON() external view returns (address);
+    function WETH() external view returns (address);
 
     function addLiquidity(
         address tokenA,

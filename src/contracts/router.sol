@@ -3,13 +3,13 @@ pragma solidity 0.8.30;
 
 import {Library} from "../libraries/Library.sol";
 import {IPair} from "../interfaces/IPair.sol";
-import {IWMON} from "../interfaces/IWMON.sol";
+import {IWETH} from "../interfaces/IWETH.sol";
 import {Transfer} from "../libraries/TransferLib.sol";
 import {IRouter} from "../interfaces/IRouter.sol";
 
 contract Router is IRouter {
     address public immutable factory;
-    address public immutable WMON;
+    address public immutable WETH;
     address public pairImplementation;
 
     modifier ensure(uint256 deadline) {
@@ -17,18 +17,18 @@ contract Router is IRouter {
         _;
     }
 
-    constructor(address _factory, address _wmon, address _pair) {
+    constructor(address _factory, address _weth, address _pair) {
         factory = _factory;
-        WMON = _wmon;
+        WETH = _weth;
         pairImplementation = _pair;
     }
 
     receive() external payable {
-        require(msg.sender == WMON);
+        require(msg.sender == WETH);
     }
 
     fallback() external payable {
-        revert("Use WMON directly");
+        revert("Use WETH directly");
     }
 
     //FUNCTION FOR ADD LIQUIDITY
@@ -83,7 +83,7 @@ contract Router is IRouter {
     {
         (amountToken, amountEth) = _addLiquidity(
             token,
-            WMON,
+            WETH,
             amountTokenDesired,
             msg.value,
             amountTokenMin,
@@ -92,12 +92,12 @@ contract Router is IRouter {
         address pair = Library.pairFor(
             factory,
             token,
-            WMON,
+            WETH,
             pairImplementation
         );
         Transfer.safeTransferFrom(token, msg.sender, pair, amountToken);
-        IWMON(WMON).deposit{value: amountEth}();
-        assert(IWMON(WMON).transfer(pair, amountEth));
+        IWETH(WETH).deposit{value: amountEth}();
+        assert(IWETH(WETH).transfer(pair, amountEth));
         liquidity = IPair(pair).mint(to);
 
         if (msg.value > amountEth)
@@ -144,7 +144,7 @@ contract Router is IRouter {
     {
         (amountToken, amountETH) = removeLiquidity(
             token,
-            WMON,
+            WETH,
             liquidity,
             amountTokenMin,
             amountETHMin,
@@ -152,7 +152,7 @@ contract Router is IRouter {
             deadline
         );
         Transfer.safeTransfer(token, to, amountToken);
-        IWMON(WMON).withdraw(amountETH);
+        IWETH(WETH).withdraw(amountETH);
         Transfer.safeTransferETH(to, amountETH);
     }
 
@@ -203,7 +203,7 @@ contract Router is IRouter {
         address pair = Library.pairFor(
             factory,
             token,
-            WMON,
+            WETH,
             pairImplementation
         );
         uint value = approveMax ? type(uint256).max : liquidity;
@@ -281,7 +281,7 @@ contract Router is IRouter {
         ensure(deadline)
         returns (uint[] memory amounts)
     {
-        require(path[0] == WMON, "ROUTER: INVALID_PATH");
+        require(path[0] == WETH, "ROUTER: INVALID_PATH");
         amounts = Library.getAmountsOut(
             factory,
             msg.value,
@@ -292,14 +292,14 @@ contract Router is IRouter {
             amounts[amounts.length - 1] >= amountOutMin,
             "ROUTER: INSUFFICIENT_OUTPUT_AMOUNT"
         );
-        IWMON(WMON).deposit{value: amounts[0]}();
+        IWETH(WETH).deposit{value: amounts[0]}();
         address pair = Library.pairFor(
             factory,
             path[0],
             path[1],
             pairImplementation
         );
-        assert(IWMON(WMON).transfer(pair, amounts[0]));
+        assert(IWETH(WETH).transfer(pair, amounts[0]));
         _swap(amounts, path, to);
     }
 
@@ -310,7 +310,7 @@ contract Router is IRouter {
         address to,
         uint deadline
     ) external override ensure(deadline) returns (uint[] memory amounts) {
-        require(path[path.length - 1] == WMON, "ROUTER: INVALID_PATH");
+        require(path[path.length - 1] == WETH, "ROUTER: INVALID_PATH");
         amounts = Library.getAmountsIn(
             factory,
             amountOut,
@@ -326,7 +326,7 @@ contract Router is IRouter {
         );
         Transfer.safeTransferFrom(path[0], msg.sender, pair, amounts[0]);
         _swap(amounts, path, address(this));
-        IWMON(WMON).withdraw(amounts[amounts.length - 1]);
+        IWETH(WETH).withdraw(amounts[amounts.length - 1]);
         Transfer.safeTransferETH(to, amounts[amounts.length - 1]);
     }
 
@@ -337,7 +337,7 @@ contract Router is IRouter {
         address to,
         uint deadline
     ) external override ensure(deadline) returns (uint[] memory amounts) {
-        require(path[path.length - 1] == WMON, "ROUTER: INVALID_PATH");
+        require(path[path.length - 1] == WETH, "ROUTER: INVALID_PATH");
         amounts = Library.getAmountsOut(
             factory,
             amountIn,
@@ -356,7 +356,7 @@ contract Router is IRouter {
         );
         Transfer.safeTransferFrom(path[0], msg.sender, pair, amounts[0]);
         _swap(amounts, path, address(this));
-        IWMON(WMON).withdraw(amounts[amounts.length - 1]);
+        IWETH(WETH).withdraw(amounts[amounts.length - 1]);
         Transfer.safeTransferETH(to, amounts[amounts.length - 1]);
     }
 
@@ -372,7 +372,7 @@ contract Router is IRouter {
         ensure(deadline)
         returns (uint[] memory amounts)
     {
-        require(path[0] == WMON, "ROUTER: INVALID_PATH");
+        require(path[0] == WETH, "ROUTER: INVALID_PATH");
         amounts = Library.getAmountsIn(
             factory,
             amountOut,
@@ -380,14 +380,14 @@ contract Router is IRouter {
             path
         );
         require(amounts[0] <= msg.value, "ROUTER: EXCESSIVE_INPUT_AMOUNT");
-        IWMON(WMON).deposit{value: amounts[0]}();
+        IWETH(WETH).deposit{value: amounts[0]}();
         address pair = Library.pairFor(
             factory,
             path[0],
             path[1],
             pairImplementation
         );
-        assert(IWMON(WMON).transfer(pair, amounts[0]));
+        assert(IWETH(WETH).transfer(pair, amounts[0]));
         _swap(amounts, path, to);
         if (msg.value > amounts[0])
             Transfer.safeTransferETH(msg.sender, msg.value - amounts[0]);
