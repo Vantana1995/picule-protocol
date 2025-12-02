@@ -8,6 +8,32 @@ Revolutionary value-backed NFTs with permanently locked liquidity that eliminate
 - 📖 [Project Description PDF](./docs/description.pdf) - Complete project overview and origin story
 - 📄 [Whitepaper PDF](./docs/whitepaper.pdf) - Technical specifications and protocol details
 
+## Foundry test [Foundry test repository](https://github.com/Vantana1995/Picule-protocol-test)
+
+# Code Coverage Report
+
+| File                                 | % Lines                | % Statements           | % Branches          | % Funcs              |
+| ------------------------------------ | ---------------------- | ---------------------- | ------------------- | -------------------- |
+| src/contracts/ICO.sol                | 70.83% (85/120)        | 70.18% (80/114)        | 35.00% (7/20)       | 63.64% (7/11)        |
+| src/contracts/TokenLaunchManager.sol | 81.51% (97/119)        | 81.03% (94/116)        | 7.69% (1/13)        | 100.00% (3/3)        |
+| src/contracts/WETH.sol               | 75.00% (21/28)         | 82.61% (19/23)         | 28.57% (2/7)        | 71.43% (5/7)         |
+| src/contracts/erc20.sol              | 100.00% (16/16)        | 100.00% (13/13)        | 50.00% (2/4)        | 100.00% (4/4)        |
+| src/contracts/erc20Constructor.sol   | 68.66% (46/67)         | 66.07% (37/56)         | 36.11% (13/36)      | 69.23% (9/13)        |
+| src/contracts/erc721.sol             | 79.49% (31/39)         | 82.76% (24/29)         | 37.50% (3/8)        | 69.23% (9/13)        |
+| src/contracts/factory.sol            | 87.50% (63/72)         | 87.50% (56/64)         | 33.33% (4/12)       | 80.00% (8/10)        |
+| src/contracts/fundsManager.sol       | 71.85% (365/508)       | 71.03% (358/504)       | 12.12% (8/66)       | 83.33% (10/12)       |
+| src/contracts/lpToken.sol            | 85.42% (41/48)         | 89.19% (33/37)         | 53.85% (7/13)       | 76.92% (10/13)       |
+| src/contracts/marketplace.sol        | 0.00% (0/67)           | 0.00% (0/57)           | 0.00% (0/32)        | 0.00% (0/15)         |
+| src/contracts/mpcToken.sol           | 77.78% (14/18)         | 84.62% (11/13)         | 25.00% (1/4)        | 66.67% (4/6)         |
+| src/contracts/pair.sol               | 84.06% (174/207)       | 84.86% (185/218)       | 40.00% (18/45)      | 93.33% (14/15)       |
+| src/contracts/router.sol             | 80.30% (106/132)       | 81.43% (114/140)       | 40.48% (17/42)      | 73.91% (17/23)       |
+| src/contracts/treasuryController.sol | 0.00% (0/15)           | 0.00% (0/12)           | 0.00% (0/8)         | 0.00% (0/5)          |
+| src/libraries/Library.sol            | 100.00% (52/52)        | 100.00% (62/62)        | 50.00% (10/20)      | 100.00% (8/8)        |
+| src/libraries/Math.sol               | 81.82% (9/11)          | 81.82% (9/11)          | 33.33% (1/3)        | 100.00% (2/2)        |
+| src/libraries/TransferLib.sol        | 75.00% (9/12)          | 75.00% (9/12)          | 37.50% (3/8)        | 75.00% (3/4)         |
+| src/libraries/UQ112x112.sol          | 0.00% (0/4)            | 0.00% (0/2)            | 100.00% (0/0)       | 0.00% (0/2)          |
+| **Total**                            | **73.55% (1129/1535)** | **74.44% (1104/1483)** | **28.45% (97/341)** | **68.07% (113/166)** |
+
 ## 📁 Repository Structure
 
 ### 📋 Smart Contracts
